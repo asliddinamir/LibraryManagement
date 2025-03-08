@@ -102,6 +102,7 @@ public class Main {
                     String issueMemberID = scanner.nextLine();
 
                     library.issueBook(issueBookTitle, issueMemberID);
+
                 }
 
                 case 7 -> {
@@ -128,7 +129,8 @@ public class Main {
                     System.exit(0);
                 }
 
-                default -> System.out.println("Invalid choice! Try again.");
+                default ->
+                    System.out.println("Invalid choice! Try again.");
             }
         }
     }
