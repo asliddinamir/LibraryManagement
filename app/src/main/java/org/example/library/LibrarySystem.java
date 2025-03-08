@@ -1,6 +1,11 @@
 package org.example.library;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+
 
 public class LibrarySystem {
 
@@ -11,6 +16,34 @@ public class LibrarySystem {
     public LibrarySystem() {
         books = new ArrayList<>();
         members = new ArrayList<>();
+    }
+
+    // Load books from file
+    public void loadMembersFromFile() {
+    try (BufferedReader reader = new BufferedReader(new FileReader("members.txt"))) {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split(",");
+            if (parts.length == 2) {
+                members.add(new Member(parts[0], parts[1]));
+            }
+        }
+        System.out.println("Member data loaded successfully.");
+    } catch (IOException e) {
+        System.out.println("Error loading member data: " + e.getMessage());
+    }
+}
+
+    // Load books from file
+    public void saveMembersToFile() {
+        try (FileWriter writer = new FileWriter("members.txt")) {
+            for (Member member : members) {
+                writer.write(member.getName() + "," + member.getMemberID() + "\n");
+            }
+            System.out.println("Member data saved successfully.");
+        } catch (IOException e) {
+            System.out.println("Error saving member data: " + e.getMessage());
+        }
     }
 
     // Add a new book

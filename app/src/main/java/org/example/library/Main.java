@@ -21,9 +21,12 @@ public class Main {
             System.out.println("2. Add Book");
             System.out.println("3. Search Book");
             System.out.println("4. View Members");
-            System.out.println("5. Issue Book");
-            System.out.println("6. Return Book");
-            System.out.println("7. Exit");
+            System.out.println("5. Register Member");
+            System.out.println("6. Issue Book");
+            System.out.println("7. Return Book");
+            System.out.println("8. Save Members to File");
+            System.out.println("9. Load Members from File");
+            System.out.println("10. Exit");
             System.out.print("Enter choice: ");
 
             System.out.flush(); // Flush output buffer
@@ -85,9 +88,21 @@ public class Main {
                     library.returnBook(returnBookTitle, returnMemberID);
                     break;
                 case 5:
-                    System.out.println("Exiting...");
-                    scanner.close();
-                    System.exit(0);
+                    System.out.print("Enter Member Name: ");
+                    String memberName = scanner.nextLine();
+
+                    System.out.print("Enter Member ID: ");
+                    String memberID = scanner.nextLine();
+
+                    library.addMember(new Member(memberName, memberID));
+                    break;
+                case 8:
+                    library.saveMembersToFile();
+                    break;
+                case 9:
+                    library.loadMembersFromFile();
+                    break;
+
                 default:
                     System.out.println("Invalid choice! Try again.");
             }
