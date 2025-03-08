@@ -31,3 +31,14 @@ A **console-based Library Management System** in **Java** that allows administra
 ```sh
 git clone https://github.com/asliddinamir/LibraryManagement.git
 cd LibraryManagement
+```
+
+### 🔹 **2. Compile Java Files**
+```sh
+javac -d bin src/main/java/org/example/library/*.java
+```
+
+### 🔹 **3. Run the Program**
+```sh
+java -cp bin org.example.library.Main
+```
