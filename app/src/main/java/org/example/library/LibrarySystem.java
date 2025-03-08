@@ -18,6 +18,38 @@ public class LibrarySystem {
     }
 
     // Load books from file
+    public void saveBooksToFile() {
+        try (FileWriter writer = new FileWriter("books.txt")) {
+            for (Book book : books) {
+                writer.write(book.getTitle() + "," + book.getAuthor() + "," + book.getISBN() + "," + book.getQuantity() + "\n");
+            }
+            System.out.println("Book data saved successfully.");
+        } catch (IOException e) {
+            System.out.println("Error saving book data: " + e.getMessage());
+        }
+    }
+
+    // Load books from file
+    public void loadBooksFromFile() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("books.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 4) {
+                    String title = parts[0];
+                    String author = parts[1];
+                    String isbn = parts[2];
+                    int quantity = Integer.parseInt(parts[3]);
+                    books.add(new Book(title, author, isbn, quantity));
+                }
+            }
+            System.out.println("Book data loaded successfully.");
+        } catch (IOException e) {
+            System.out.println("Error loading book data: " + e.getMessage());
+        }
+    }
+
+    // Load books from file
     public void loadMembersFromFile() {
         try (BufferedReader reader = new BufferedReader(new FileReader("members.txt"))) {
             String line;

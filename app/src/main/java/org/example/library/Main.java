@@ -8,12 +8,9 @@ public class Main {
         LibrarySystem library = new LibrarySystem();
         Scanner scanner = new Scanner(System.in);
 
-        // // Add sample books
-        // library.addBook(new Book("Java Programming", "James Gosling", "123456", 3));
-        // library.addBook(new Book("Python Basics", "Guido van Rossum", "789101", 5));
-        // // Add sample members
-        // library.addMember(new Member("Alice", "M001"));
-        // library.addMember(new Member("Bob", "M002"));
+        // Load books and members from file
+        library.loadBooksFromFile();
+
         while (true) {
             // Main Menu: Ask if user is Admin or Member
             System.out.println("\nLibrary System");
@@ -45,8 +42,9 @@ public class Main {
                         System.out.println("7. Return Book");
                         System.out.println("8. Save Members to File");
                         System.out.println("9. Load Members from File");
-                        System.out.println("10. Add Sample Data");
-                        System.out.println("11. Exit to Main Menu");
+                        System.out.println("10. Save Books to File");
+                        System.out.println("11. Load Books from File");
+                        System.out.println("12. Exit to Main Menu");
                         System.out.print("Enter choice: (1 - 11 ): ");
 
                         if (!scanner.hasNextInt()) {
@@ -125,22 +123,19 @@ public class Main {
                             case 9 ->
                                 library.loadMembersFromFile();
                             case 10 -> {
-                                library.addBook(new Book("Java Programming", "James Gosling", "123456", 3));
-                                library.addBook(new Book("Python Basics", "Guido van Rossum", "789101", 5));
-
-                                library.addMember(new Member("Alice", "M001"));
-                                library.addMember(new Member("Bob", "M002"));
-
-                                System.out.println("Sample books and members added.");
+                                library.saveBooksToFile();
+                            }
+                            case 11 -> {
+                                library.saveBooksToFile();
                             }
 
-                            case 11 ->
+                            case 12 ->
                                 System.out.println("Returning to Main Menu...");
                             // Exit Admin Menu
                             default ->
                                 System.out.println("Invalid choice! Try again.");
                         }
-                        if (adminChoice == 11) {
+                        if (adminChoice == 12) {
                             break; // Exit Admin Menu
 
                         }
