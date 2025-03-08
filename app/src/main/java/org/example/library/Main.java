@@ -17,6 +17,7 @@ public class Main {
         library.addMember(new Member("Bob", "M002"));
 
         while (true) {
+            System.out.println("\nLibrary Management System");
             System.out.println("1. View Books");
             System.out.println("2. Add Book");
             System.out.println("3. Search Book");
@@ -41,10 +42,11 @@ public class Main {
             scanner.nextLine(); // Consume newline
 
             switch (choice) {
-                case 1:
+                case 1 -> // View Books
                     library.displayBooks();
-                    break;
-                case 2:
+
+                case 2 -> {
+                    // Add Book
                     System.out.print("Enter Book Title: ");
                     String title = scanner.nextLine();
 
@@ -68,26 +70,20 @@ public class Main {
                     }
 
                     library.addBook(new Book(title, author, isbn, quantity));
-                    break;
+                }
 
-                case 3:
+                case 3 -> {
+                    // Search Book
                     System.out.print("Enter Book Title or Author: ");
                     String searchKeyword = scanner.nextLine();
                     library.searchBook(searchKeyword);
-                    break;
+                }
 
-                case 4:
-                    System.out.print("Enter Book Title: ");
-                    System.out.flush();
-                    String returnBookTitle = scanner.nextLine();
+                case 4 -> // View Members
+                    library.displayMembers();
 
-                    System.out.print("Enter Member ID: ");
-                    System.out.flush();
-                    String returnMemberID = scanner.nextLine();
-
-                    library.returnBook(returnBookTitle, returnMemberID);
-                    break;
-                case 5:
+                case 5 -> {
+                    // Register Member
                     System.out.print("Enter Member Name: ");
                     String memberName = scanner.nextLine();
 
@@ -95,18 +91,45 @@ public class Main {
                     String memberID = scanner.nextLine();
 
                     library.addMember(new Member(memberName, memberID));
-                    break;
-                case 8:
-                    library.saveMembersToFile();
-                    break;
-                case 9:
-                    library.loadMembersFromFile();
-                    break;
+                }
 
-                default:
-                    System.out.println("Invalid choice! Try again.");
+                case 6 -> {
+                    // Issue Book
+                    System.out.print("Enter Book Title: ");
+                    String issueBookTitle = scanner.nextLine();
+
+                    System.out.print("Enter Member ID: ");
+                    String issueMemberID = scanner.nextLine();
+
+                    library.issueBook(issueBookTitle, issueMemberID);
+                }
+
+                case 7 -> {
+                    // Return Book
+                    System.out.print("Enter Book Title: ");
+                    String returnBookTitle = scanner.nextLine();
+
+                    System.out.print("Enter Member ID: ");
+                    String returnMemberID = scanner.nextLine();
+
+                    library.returnBook(returnBookTitle, returnMemberID);
+                }
+
+                case 8 -> // Save Members to File
+                    library.saveMembersToFile();
+
+                case 9 -> // Load Members from File
+                    library.loadMembersFromFile();
+
+                case 10 -> {
+                    // Exit
+                    System.out.println("Exiting...");
+                    scanner.close();
+                    System.exit(0);
+                }
+
+                default -> System.out.println("Invalid choice! Try again.");
             }
         }
-
     }
 }
