@@ -8,8 +8,10 @@ public class Main {
         LibrarySystem library = new LibrarySystem();
         Scanner scanner = new Scanner(System.in);
 
-        // Load books and members from file
+        // Load books from file
         library.loadBooksFromFile();
+        //Load members from file
+        library.loadMembersFromFile();
 
         while (true) {
             // Main Menu: Ask if user is Admin or Member
@@ -45,7 +47,7 @@ public class Main {
                         System.out.println("10. Save Books to File");
                         System.out.println("11. Load Books from File");
                         System.out.println("12. Exit to Main Menu");
-                        System.out.print("Enter choice: (1 - 11 ): ");
+                        System.out.print("Enter choice: (1 - 12 ): ");
 
                         if (!scanner.hasNextInt()) {
                             System.out.println("Invalid input! Please enter a number.");
